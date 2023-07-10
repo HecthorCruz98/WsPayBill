@@ -1,0 +1,53 @@
+﻿@model List<BillModel>
+@{
+    ViewData["Title"] = "Facturas";
+}
+<div class="card">
+    <div class="card-header">
+        Facturas
+    </div>
+    <div class="card-body">
+
+        <a asp-action="BillAdd" asp-controller="Bill" class="btn btn-success btn-sm">Crear Nueva Factura</a>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Numero de Factura</th>
+                    <th>Numero de Contrato</th>
+                    <th>Descripcion</th>
+                    <th>Valor Factura</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.bilId</td>
+                        <td>@item.bilName</td>
+                        <td>@item.bilNumber</td>
+                        <td>@item.bilContract</td>
+                        <td>@item.bilDescription</td>
+                        <td>@item.bilValuePay</td>
+                        <td>
+                            <a asp-action="AutorUp" asp-controller="Home" class="btn btn-primary btn-sm" asp-route-Id="@item.bilId">Editar</a>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                }
+                <a asp-action="AutorList" asp-controller="Home" class="btn btn-warning btn-sm">Actualizar</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-action="EditorialList" asp-controller="Home" class="btn btn-warning btn-sm">Pagos</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-action="LibroList" asp-controller="Home" class="btn btn-warning btn-sm">Usuarios</a>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

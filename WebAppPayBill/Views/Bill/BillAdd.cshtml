@@ -1,0 +1,45 @@
+﻿@model BillModel
+@{
+    ViewData["Title"] = " Agregar Nueva Factura";
+}
+<div class="card">
+    <div class="card-header">
+        Crear Factura
+    </div>
+    <div class="card-body">
+
+        <form asp-action="AddBill" asp-controller="Bill" method="post">
+
+            <div class="mb-2">
+                <label class="form-label">Id</label>
+                <input type="number" class="form-control form-control-sm" asp-for="bilId" readonly="readonly" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Nombre Factura</label>
+                <input type="text" class="form-control form-control-sm" asp-for="bilName" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Contrato</label>
+                <input type="text" class="form-control form-control-sm" asp-for="bilContract" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Numero de Factura</label>
+                <input type="text" class="form-control form-control-sm" asp-for="bilNumber" />
+            </div>            
+            <div class="mb-2">
+                <label class="form-label">Descripción</label>
+                <input type="text" class="form-control form-control-sm" asp-for="bilDescription" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Valor a Pagar</label>
+                <input type="text" class="form-control form-control-sm" asp-for="bilValuePay" />
+            </div>
+
+            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+
+            <a asp-action="BillList" asp-controller="Home" class="btn btn-warning btn-sm">Volver a lista</a>
+        </form>
+
+    </div>
+
+</div>
