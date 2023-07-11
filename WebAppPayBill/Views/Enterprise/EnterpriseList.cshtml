@@ -1,24 +1,21 @@
-﻿@model List<BillModel>
+﻿@model List<EnterpriseModel>
 @{
-    ViewData["Title"] = "Facturas";
+    ViewData["Title"] = "Empresas";
 }
 <div class="card">
     <div class="card-header">
-        Facturas
+        Empresas
     </div>
     <div class="card-body">
 
-        <a asp-action="BillAdd" asp-controller="Bill" class="btn btn-success btn-sm">Crear Nueva Factura</a>
+        <a asp-action="EnterpriseAdd" asp-controller="Enterprise" class="btn btn-success btn-sm">Crear Nueva Empresa Facturadora</a>
         <hr />
         <table class="table">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Numero de Factura</th>
-                    <th>Numero de Contrato</th>
-                    <th>Descripcion</th>
-                    <th>Valor Factura</th>
+                    <th>Nombre Empresa</th>
+                    <th>Tipo Empresa</th>
 
                 </tr>
             </thead>
@@ -26,20 +23,17 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.bilId</td>
-                        <td>@item.bilName</td>
-                        <td>@item.bilNumber</td>
-                        <td>@item.bilContract</td>
-                        <td>@item.bilDescription</td>
-                        <td>@item.bilValuePay</td>
+                        <td>@item.entId</td>
+                        <td>@item.entName</td>
+                        <td>@item.etyId</td>
                         <td>
-                            <a asp-action="BillUp" asp-controller="Bill" class="btn btn-primary btn-sm" asp-route-Id="@item.bilId">Editar</a>
+                            <a asp-action="EnterpriseUp" asp-controller="Enterprise" class="btn btn-primary btn-sm" asp-route-Id="@item.entId">Editar</a>
                         </td>
                         <td>
                         </td>
                     </tr>
                 }
-                <a asp-action="AutorList" asp-controller="Bill" class="btn btn-warning btn-sm">Actualizar</a>
+                <a asp-action="EnterpriseList" asp-controller="Enterprise" class="btn btn-warning btn-sm">Actualizar</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a asp-action="EditorialList" asp-controller="Home" class="btn btn-warning btn-sm">Pagos</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

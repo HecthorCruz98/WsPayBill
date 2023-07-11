@@ -1,0 +1,46 @@
+﻿@model List<BillModel>
+@{
+    ViewData["Title"] = " Actualizar Factura";
+}
+<div class="card">
+    <div class="card-header">
+        Actualizar Factura
+    </div>
+    <div class="card-body">
+
+        <form asp-action="UpBill" asp-controller="Bill" method="post">
+            @foreach (var item in Model)
+            {
+                <div class="mb-2">
+                    <label class="form-label">Id</label>
+                    <input type="number" class="form-control form-control-sm" asp-for="@item.bilId" readonly="readonly" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Nombre Factura</label>
+                    <input type="text" class="form-control form-control-sm" asp-for="@item.bilName" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Contrato</label>
+                    <input type="text" class="form-control form-control-sm" asp-for="@item.bilContract" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Numero de Factura</label>
+                    <input type="text" class="form-control form-control-sm" asp-for="@item.bilNumber" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Descripción</label>
+                    <input type="text" class="form-control form-control-sm" asp-for="@item.bilDescription" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Valor a Pagar</label>
+                    <input type="text" class="form-control form-control-sm" asp-for="@item.bilValuePay" />
+                </div>
+            }
+            <button type="submit" class="btn btn-success btn-sm">Actualizar</button>
+
+            <a asp-action="BillList" asp-controller="Home" class="btn btn-warning btn-sm">Volver a lista</a>
+        </form>
+
+    </div>
+
+</div>

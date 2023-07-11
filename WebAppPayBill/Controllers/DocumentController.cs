@@ -1,39 +1,38 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using WebAppPayBill.Models;
 using WebAppPayBill.Services;
+using WebAppPayBill.Services.DocumentServices;
 
 namespace WebAppPayBill.Controllers
 {
-    public class BillController : Controller
+    public class DocumentController : Controller
     {
-        private IBillService _servicioApi;
-        private readonly ILogger<BillController> _logger;
+        private IDocumentService _servicioApi;
+        private readonly ILogger<DocumentController> _logger;
 
-        public BillController(ILogger<BillController> logger, IBillService servicioApi)
+        public DocumentController(ILogger<DocumentController> logger, IDocumentService servicioApi)
         {
             _servicioApi = servicioApi;
             _logger = logger;
         }
 
-        public async Task<IActionResult> BillList(BillModel obj)
+        public async Task<IActionResult> DocumentList(DocumentModel obj)
         {
-            List<BillModel> lista = await _servicioApi.GetBills(obj.bilId);
+            List<DocumentModel> lista = await _servicioApi.GetDocuments(obj.bilId);
             return View(lista);
 
         }
-        public async Task<IActionResult> AddBill(BillModel obj)
+        public async Task<IActionResult> AddDocument(DocumentModel obj)
         {
 
             bool respuesta;
 
             if (obj != null)
             {
-                obj.State = 1;
+                //obj.State = 1;
                 obj.createDate = DateTime.Now;
                 obj.createUser = "Sistema";
-                respuesta = await _servicioApi.AddBill(obj);
+                respuesta = await _servicioApi.AddDocument(obj);
             }
             else
             {
@@ -48,17 +47,17 @@ namespace WebAppPayBill.Controllers
                 return RedirectToAction("BillAdd");
 
         }
-        public async Task<IActionResult> UpBill(BillModel obj)
+        public async Task<IActionResult> UpDocument(DocumentModel obj)
         {
 
             bool respuesta;
 
             if (obj != null)
             {
-                obj.State = 1;
+                //obj.State = 1;
                 obj.createDate = DateTime.Now;
                 obj.createUser = "Sistema";
-                respuesta = await _servicioApi.UpBill(obj);
+                respuesta = await _servicioApi.UpDocument(obj);
             }
             else
             {
@@ -67,20 +66,20 @@ namespace WebAppPayBill.Controllers
 
 
             if (respuesta)
-                return RedirectToAction("BillList");
+                return RedirectToAction("DocumentList");
             else
                 //return NoContent();
-                return RedirectToAction("BillAdd");
+                return RedirectToAction("DocumentAdd");
 
         }
 
-        public IActionResult BillAdd()
+        public IActionResult DocumentAdd()
         {
             return View();
         }
-        public async Task<IActionResult> BillUp(BillModel obj)
+        public async Task<IActionResult> DocumentUp(DocumentModel obj)
         {
-            List<BillModel> lista = await _servicioApi.GetBills(obj.bilId);
+            List<DocumentModel> lista = await _servicioApi.GetDocuments(obj.bilId);
             return View(lista);
 
         }

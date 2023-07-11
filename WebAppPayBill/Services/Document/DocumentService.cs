@@ -2,12 +2,12 @@
 using System.Text;
 using WebAppPayBill.Models;
 
-namespace WebAppPayBill.Services
+namespace WebAppPayBill.Services.DocumentServices
 {
-    public class BillService: IBillService
+    public class DocumentService : IDocumentService
     {
         private static string _baseUrl;
-        public BillService()
+        public DocumentService()
         {
 
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
@@ -15,21 +15,21 @@ namespace WebAppPayBill.Services
             _baseUrl = builder.GetSection("ApiSetting:baseUrl").Value;
         }
 
-        public async Task<List<BillModel>> GetBills(int? Id)
+        public async Task<List<DocumentModel>> GetDocuments(int? Id)
         {
-            List<BillModel> lista = new List<BillModel>();
+            List<DocumentModel> lista = new List<DocumentModel>();
 
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseUrl);
             if (Id == 0)
             {
-                var response = await cliente.GetAsync("api/v1/Bill/GetBills");
+                var response = await cliente.GetAsync("api/v1/Documents/GetDocuments");
 
                 if (response.IsSuccessStatusCode)
                 {
 
                     var json_respuesta = await response.Content.ReadAsStringAsync();
-                    var resultado = JsonConvert.DeserializeObject<List<BillModel>>(json_respuesta);
+                    var resultado = JsonConvert.DeserializeObject<List<DocumentModel>>(json_respuesta);
                     lista = resultado;
                 }
             }
@@ -41,14 +41,14 @@ namespace WebAppPayBill.Services
                 {
 
                     var json_respuesta = await response.Content.ReadAsStringAsync();
-                    var resultado = JsonConvert.DeserializeObject<List<BillModel>>(json_respuesta);
+                    var resultado = JsonConvert.DeserializeObject<List<DocumentModel>>(json_respuesta);
                     lista = resultado;
                 }
             }
 
             return lista;
         }
-        public async Task<bool> AddBill(BillModel obj)
+        public async Task<bool> AddDocument(DocumentModel obj)
         {
             bool respuesta = false;
 
@@ -57,7 +57,7 @@ namespace WebAppPayBill.Services
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync("api/v1/Bill/CreateBill", content);
+            var response = await cliente.PostAsync("api/v1/Document/CreateDocument", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -66,7 +66,7 @@ namespace WebAppPayBill.Services
 
             return respuesta;
         }
-        public async Task<bool> UpBill(BillModel obj)
+        public async Task<bool> UpDocument(DocumentModel obj)
         {
             bool respuesta = false;
 
@@ -75,7 +75,7 @@ namespace WebAppPayBill.Services
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync("api/v1/Bill/UpdateBill", content);
+            var response = await cliente.PostAsync("api/v1/Document/UpdateDocument", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -84,7 +84,5 @@ namespace WebAppPayBill.Services
 
             return respuesta;
         }
-
-
     }
 }

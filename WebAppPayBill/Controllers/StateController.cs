@@ -1,39 +1,38 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using WebAppPayBill.Models;
 using WebAppPayBill.Services;
+using WebAppPayBill.Services.State;
 
 namespace WebAppPayBill.Controllers
 {
-    public class BillController : Controller
+    public class StateController : Controller
     {
-        private IBillService _servicioApi;
+        private IStateService _servicioApi;
         private readonly ILogger<BillController> _logger;
 
-        public BillController(ILogger<BillController> logger, IBillService servicioApi)
+        public StateController(ILogger<BillController> logger, IStateService servicioApi)
         {
             _servicioApi = servicioApi;
             _logger = logger;
         }
 
-        public async Task<IActionResult> BillList(BillModel obj)
+        public async Task<IActionResult> StateList(StateModel obj)
         {
-            List<BillModel> lista = await _servicioApi.GetBills(obj.bilId);
+            List<StateModel> lista = await _servicioApi.GetStates(obj.staId);
             return View(lista);
 
         }
-        public async Task<IActionResult> AddBill(BillModel obj)
+        public async Task<IActionResult> AddState(StateModel obj)
         {
 
             bool respuesta;
 
             if (obj != null)
             {
-                obj.State = 1;
+                //obj.State = 1;
                 obj.createDate = DateTime.Now;
                 obj.createUser = "Sistema";
-                respuesta = await _servicioApi.AddBill(obj);
+                respuesta = await _servicioApi.AddStates(obj);
             }
             else
             {
@@ -42,23 +41,23 @@ namespace WebAppPayBill.Controllers
 
 
             if (respuesta)
-                return RedirectToAction("BillList");
+                return RedirectToAction("StateList");
             else
                 //return NoContent();
-                return RedirectToAction("BillAdd");
+                return RedirectToAction("StateAdd");
 
         }
-        public async Task<IActionResult> UpBill(BillModel obj)
+        public async Task<IActionResult> UpState(StateModel obj)
         {
 
             bool respuesta;
 
             if (obj != null)
             {
-                obj.State = 1;
+                //obj.State = 1;
                 obj.createDate = DateTime.Now;
                 obj.createUser = "Sistema";
-                respuesta = await _servicioApi.UpBill(obj);
+                respuesta = await _servicioApi.UpStates(obj);
             }
             else
             {
@@ -67,20 +66,20 @@ namespace WebAppPayBill.Controllers
 
 
             if (respuesta)
-                return RedirectToAction("BillList");
+                return RedirectToAction("StateList");
             else
                 //return NoContent();
-                return RedirectToAction("BillAdd");
+                return RedirectToAction("StateAdd");
 
         }
 
-        public IActionResult BillAdd()
+        public IActionResult StateAdd()
         {
             return View();
         }
-        public async Task<IActionResult> BillUp(BillModel obj)
+        public async Task<IActionResult> StateUp(StateModel obj)
         {
-            List<BillModel> lista = await _servicioApi.GetBills(obj.bilId);
+            List<StateModel> lista = await _servicioApi.GetStates(obj.staId);
             return View(lista);
 
         }

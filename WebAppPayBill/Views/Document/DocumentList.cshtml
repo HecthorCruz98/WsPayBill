@@ -1,0 +1,52 @@
+﻿@model List<DocumentModel>
+@{
+    ViewData["Title"] = "Facturas";
+}
+<div class="card">
+    <div class="card-header">
+        Cargar soportes
+    </div>
+    <div class="card-body">
+
+        <a asp-action="DocumentAdd" asp-controller="Document" class="btn btn-success btn-sm">Cargar nuevo documento</a>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id Documento</th>
+                    <th>Id Factura</th>
+                    <th>Url Soporte</th>
+                    <th>Usuario</th>
+                    <th>Descripcion</th>
+                    <th>Valor Factura</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.docId</td>
+                        <td>@item.bilId</td>
+                        <td>@item.docUrl</td>
+                        <td>@item.docId</td>
+                        <td>@item.usrId</td>
+                        <td>
+                            <a asp-action="DocumentUp" asp-controller="Document" class="btn btn-primary btn-sm" asp-route-Id="@item.docId">Editar</a>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                }
+                <a asp-action="DocumentList" asp-controller="Document" class="btn btn-warning btn-sm">Actualizar</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-action="DocumentList" asp-controller="Document" class="btn btn-warning btn-sm">Pagos</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-action="DocumentList" asp-controller="Document" class="btn btn-warning btn-sm">Usuarios</a>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

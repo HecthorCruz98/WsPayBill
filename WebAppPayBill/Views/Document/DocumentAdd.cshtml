@@ -1,0 +1,37 @@
+﻿@model DocumentModel
+@{
+    ViewData["Title"] = "Cargar soporte de pago";
+}
+<div class="card">
+    <div class="card-header">
+        Crear Factura
+    </div>
+    <div class="card-body">
+
+        <form asp-action="AddDocument" asp-controller="Document" method="post">
+
+            <div class="mb-2">
+                <label class="form-label">Id</label>
+                <input type="number" class="form-control form-control-sm" asp-for="docId" readonly="readonly" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Usuario</label>
+                <input type="text" class="form-control form-control-sm" asp-for="usrId" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Factura</label>
+                <input type="text" class="form-control form-control-sm" asp-for="bilId" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Url Documento Soporte</label>
+                <input type="text" class="form-control form-control-sm" asp-for="docUrl" />
+            </div>
+
+            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+
+            <a asp-action="DocumentList" asp-controller="Document" class="btn btn-warning btn-sm">Volver a lista</a>
+        </form>
+
+    </div>
+
+</div>

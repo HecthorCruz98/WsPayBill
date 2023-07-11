@@ -2,12 +2,12 @@
 using System.Text;
 using WebAppPayBill.Models;
 
-namespace WebAppPayBill.Services
+namespace WebAppPayBill.Services.Rol
 {
-    public class BillService: IBillService
+    public class RolService : IRolService
     {
         private static string _baseUrl;
-        public BillService()
+        public RolService()
         {
 
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
@@ -15,7 +15,7 @@ namespace WebAppPayBill.Services
             _baseUrl = builder.GetSection("ApiSetting:baseUrl").Value;
         }
 
-        public async Task<List<BillModel>> GetBills(int? Id)
+        public async Task<List<RolModel>> GetRoles(int? Id)
         {
             List<BillModel> lista = new List<BillModel>();
 
@@ -48,7 +48,7 @@ namespace WebAppPayBill.Services
 
             return lista;
         }
-        public async Task<bool> AddBill(BillModel obj)
+        public async Task<bool> AddRol(RolModel obj)
         {
             bool respuesta = false;
 
@@ -66,7 +66,7 @@ namespace WebAppPayBill.Services
 
             return respuesta;
         }
-        public async Task<bool> UpBill(BillModel obj)
+        public async Task<bool> UpRol(RolModel obj)
         {
             bool respuesta = false;
 
@@ -84,7 +84,5 @@ namespace WebAppPayBill.Services
 
             return respuesta;
         }
-
-
     }
 }

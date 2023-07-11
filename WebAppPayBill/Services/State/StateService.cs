@@ -2,12 +2,12 @@
 using System.Text;
 using WebAppPayBill.Models;
 
-namespace WebAppPayBill.Services
+namespace WebAppPayBill.Services.State
 {
-    public class BillService: IBillService
+    public class StateService : IStateService
     {
         private static string _baseUrl;
-        public BillService()
+        public StateService()
         {
 
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
@@ -15,40 +15,40 @@ namespace WebAppPayBill.Services
             _baseUrl = builder.GetSection("ApiSetting:baseUrl").Value;
         }
 
-        public async Task<List<BillModel>> GetBills(int? Id)
+        public async Task<List<StateModel>> GetStates(int? Id)
         {
-            List<BillModel> lista = new List<BillModel>();
+            List<StateModel> lista = new List<StateModel>();
 
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseUrl);
             if (Id == 0)
             {
-                var response = await cliente.GetAsync("api/v1/Bill/GetBills");
+                var response = await cliente.GetAsync("api/v1/State/GetStates");
 
                 if (response.IsSuccessStatusCode)
                 {
 
                     var json_respuesta = await response.Content.ReadAsStringAsync();
-                    var resultado = JsonConvert.DeserializeObject<List<BillModel>>(json_respuesta);
+                    var resultado = JsonConvert.DeserializeObject<List<StateModel>>(json_respuesta);
                     lista = resultado;
                 }
             }
             else
             {
-                var response = await cliente.GetAsync("api/v1/Bill/GetBills?Id=" + Id);
+                var response = await cliente.GetAsync("api/v1/State/GetStates?Id=" + Id);
 
                 if (response.IsSuccessStatusCode)
                 {
 
                     var json_respuesta = await response.Content.ReadAsStringAsync();
-                    var resultado = JsonConvert.DeserializeObject<List<BillModel>>(json_respuesta);
+                    var resultado = JsonConvert.DeserializeObject<List<StateModel>>(json_respuesta);
                     lista = resultado;
                 }
             }
 
             return lista;
         }
-        public async Task<bool> AddBill(BillModel obj)
+        public async Task<bool> AddState(StateModel obj)
         {
             bool respuesta = false;
 
@@ -57,7 +57,7 @@ namespace WebAppPayBill.Services
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync("api/v1/Bill/CreateBill", content);
+            var response = await cliente.PostAsync("api/v1/State/CreateState", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -66,7 +66,7 @@ namespace WebAppPayBill.Services
 
             return respuesta;
         }
-        public async Task<bool> UpBill(BillModel obj)
+        public async Task<bool> UpState(StateModel obj)
         {
             bool respuesta = false;
 
@@ -75,7 +75,7 @@ namespace WebAppPayBill.Services
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync("api/v1/Bill/UpdateBill", content);
+            var response = await cliente.PostAsync("api/v1/State/UpdateState", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -84,7 +84,6 @@ namespace WebAppPayBill.Services
 
             return respuesta;
         }
-
 
     }
 }

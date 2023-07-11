@@ -6,5 +6,7 @@ namespace WebAppPayBill.Services
     {
         Task<List<BillModel>> GetBills(int? Id);
         Task<bool> AddBill(BillModel obj);
+        Task<bool> UpBill(BillModel obj);
+
     }
 }
