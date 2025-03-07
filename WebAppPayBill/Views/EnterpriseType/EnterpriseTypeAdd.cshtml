@@ -1,0 +1,29 @@
+﻿@model EnterpriseTypeModel
+@{
+    ViewData["Title"] = " Agregar Tipo de Empresa Facturadora";
+}
+<div class="card">
+    <div class="card-header">
+        Crear Factura
+    </div>
+    <div class="card-body">
+
+        <form asp-action="AddEnterpriseType" asp-controller="EnterpriseType" method="post">
+
+            <div class="mb-2">
+                <label class="form-label">Id</label>
+                <input type="number" class="form-control form-control-sm" asp-for="etyId" readonly="readonly" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Tipo Empresa</label>
+                <input type="text" class="form-control form-control-sm" asp-for="etyName" />
+            </div>
+
+            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+
+            <a asp-action="EnterpriseTypeList" asp-controller="EnterpriseType" class="btn btn-warning btn-sm">Volver a lista</a>
+        </form>
+
+    </div>
+
+</div>

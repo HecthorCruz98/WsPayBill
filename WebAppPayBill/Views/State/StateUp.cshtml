@@ -1,0 +1,30 @@
+﻿@model List<StateModel>
+@{
+    ViewData["Title"] = " Estados";
+}
+<div class="card">
+    <div class="card-header">
+        Actualizar estado en el sistema
+    </div>
+    <div class="card-body">
+        @foreach (var item in Model)
+        {
+            <form asp-action="AddRol" asp-controller="Rol" method="post">
+
+                <div class="mb-2">
+                    <label class="form-label">Id</label>
+                    <input type="number" class="form-control form-control-sm" asp-for="@item.staId" readonly="readonly" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Estado</label>
+                    <input type="text" class="form-control form-control-sm" asp-for="@item.staName" />
+                </div>
+
+                <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+
+                <a asp-action="RolList" asp-controller="Rol" class="btn btn-warning btn-sm">Volver a lista</a>
+            </form>
+        }
+    </div>
+
+</div>

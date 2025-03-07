@@ -1,0 +1,30 @@
+﻿@model List<EnterpriseTypeModel>
+@{
+    ViewData["Title"] = " Actualizar Tipo de Empresa Facturadora";
+}
+<div class="card">
+    <div class="card-header">
+        Actualizar Tipo Empresa
+    </div>
+    <div class="card-body">
+        @foreach (var item in Model)
+        {
+            <form asp-action="UpEnterpriseType" asp-controller="EnterpriseType" method="post">
+
+                <div class="mb-2">
+                    <label class="form-label">Id</label>
+                    <input type="number" class="form-control form-control-sm" asp-for="@item.etyId" readonly="readonly" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Tipo Empresa</label>
+                    <input type="text" class="form-control form-control-sm" asp-for="@item.etyName" />
+                </div>
+
+                <button type="submit" class="btn btn-success btn-sm">Actualizar</button>
+
+                <a asp-action="EnterpriseTypeList" asp-controller="EnterpriseType" class="btn btn-warning btn-sm">Volver a lista</a>
+            </form>
+        }
+    </div>
+
+</div>

@@ -5,7 +5,7 @@ namespace WebAppPayBill.Services.State
     public interface IStateService
     {
         Task<List<StateModel>> GetStates(int? Id);
-        Task<bool> AddStates(StateModel obj);
-        Task<bool> UpStates(StateModel obj);
+        Task<bool> AddState(StateModel obj);
+        Task<bool> UpState(StateModel obj);
     }
 }

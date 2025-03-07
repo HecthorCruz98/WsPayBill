@@ -2,12 +2,12 @@
 using System.Text;
 using WebAppPayBill.Models;
 
-namespace WebAppPayBill.Services.Rol
+namespace WebAppPayBill.Services.Transaction
 {
-    public class RolService : IRolService
+    public class TransactionService : ITransactionService
     {
         private static string _baseUrl;
-        public RolService()
+        public TransactionService()
         {
 
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
@@ -15,40 +15,40 @@ namespace WebAppPayBill.Services.Rol
             _baseUrl = builder.GetSection("ApiSetting:baseUrl").Value;
         }
 
-        public async Task<List<RolModel>> GetRoles(int? Id)
+        public async Task<List<TransactionModel>> GetTransactions(int? Id)
         {
-            List<RolModel> lista = new List<RolModel>();
+            List<TransactionModel> lista = new List<TransactionModel>();
 
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseUrl);
             if (Id == 0)
             {
-                var response = await cliente.GetAsync("api/v1/Rol/GetRoles");
+                var response = await cliente.GetAsync("api/v1/Transaction/GetTransactions");
 
                 if (response.IsSuccessStatusCode)
                 {
 
                     var json_respuesta = await response.Content.ReadAsStringAsync();
-                    var resultado = JsonConvert.DeserializeObject<List<RolModel>>(json_respuesta);
+                    var resultado = JsonConvert.DeserializeObject<List<TransactionModel>>(json_respuesta);
                     lista = resultado;
                 }
             }
             else
             {
-                var response = await cliente.GetAsync("api/v1/Roles/GetRoles?Id=" + Id);
+                var response = await cliente.GetAsync("api/v1/Transaction/GetTransactions?Id=" + Id);
 
                 if (response.IsSuccessStatusCode)
                 {
 
                     var json_respuesta = await response.Content.ReadAsStringAsync();
-                    var resultado = JsonConvert.DeserializeObject<List<RolModel>>(json_respuesta);
+                    var resultado = JsonConvert.DeserializeObject<List<TransactionModel>>(json_respuesta);
                     lista = resultado;
                 }
             }
 
             return lista;
         }
-        public async Task<bool> AddRol(RolModel obj)
+        public async Task<bool> AddTransaction(TransactionModel obj)
         {
             bool respuesta = false;
 
@@ -57,7 +57,7 @@ namespace WebAppPayBill.Services.Rol
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync("api/v1/Rol/CreateRol", content);
+            var response = await cliente.PostAsync("api/v1/Transaction/CreateTransaction", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -66,7 +66,7 @@ namespace WebAppPayBill.Services.Rol
 
             return respuesta;
         }
-        public async Task<bool> UpRol(RolModel obj)
+        public async Task<bool> UpTransaction(TransactionModel obj)
         {
             bool respuesta = false;
 
@@ -75,7 +75,7 @@ namespace WebAppPayBill.Services.Rol
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync("api/v1/Rol/UpdateRol", content);
+            var response = await cliente.PostAsync("api/v1/Transaction/UpdateTransaction", content);
 
             if (response.IsSuccessStatusCode)
             {

@@ -32,7 +32,7 @@ namespace WebAppPayBill.Controllers
                 //obj.State = 1;
                 obj.createDate = DateTime.Now;
                 obj.createUser = "Sistema";
-                respuesta = await _servicioApi.AddStates(obj);
+                respuesta = await _servicioApi.AddState(obj);
             }
             else
             {
@@ -57,7 +57,7 @@ namespace WebAppPayBill.Controllers
                 //obj.State = 1;
                 obj.createDate = DateTime.Now;
                 obj.createUser = "Sistema";
-                respuesta = await _servicioApi.UpStates(obj);
+                respuesta = await _servicioApi.UpState(obj);
             }
             else
             {

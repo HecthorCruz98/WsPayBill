@@ -1,0 +1,32 @@
+﻿@model TransactionModel
+@{
+    ViewData["Title"] = " Realizar Pago";
+}
+<div class="card">
+    <div class="card-header">
+        Realizar pago de factura
+    </div>
+    <div class="card-body">
+
+        <form asp-action="AddTransaction" asp-controller="Transaction" method="post">
+
+            <div class="mb-2">
+                <label class="form-label">Id</label>
+                <input type="number" class="form-control form-control-sm" asp-for="trnId" readonly="readonly" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Usuario</label>
+                <input type="text" class="form-control form-control-sm" asp-for="usrId" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Factura</label>
+                <input type="text" class="form-control form-control-sm" asp-for="bilId" />
+            </div>
+            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+
+            <a asp-action="TransactionList" asp-controller="Transaction" class="btn btn-warning btn-sm">Volver a lista</a>
+        </form>
+
+    </div>
+
+</div>

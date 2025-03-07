@@ -1,0 +1,45 @@
+﻿@model List<RolModel>
+@{
+    ViewData["Title"] = "Rol Usuario";
+}
+<div class="card">
+    <div class="card-header">
+        Roles
+    </div>
+    <div class="card-body">
+
+        <a asp-action="RolAdd" asp-controller="Rol" class="btn btn-success btn-sm">Crear un nuevo rol de usuario</a>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tipo Empresa</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.rolId</td>
+                        <td>@item.rolName</td>
+                        <td>
+                            <a asp-action="RolUp" asp-controller="Rol" class="btn btn-primary btn-sm" asp-route-Id="@item.rolId">Editar</a>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                }
+                <a asp-action="RolList" asp-controller="Rol" class="btn btn-warning btn-sm">Actualizar</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-action="EditorialList" asp-controller="Home" class="btn btn-warning btn-sm">Pagos</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-action="LibroList" asp-controller="Home" class="btn btn-warning btn-sm">Usuarios</a>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

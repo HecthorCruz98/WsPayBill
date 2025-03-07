@@ -1,0 +1,30 @@
+﻿@model List<RolModel>
+@{
+    ViewData["Title"] = " Actualizar rol de usuario";
+}
+<div class="card">
+    <div class="card-header">
+        Actualizar Rol de Usuario
+    </div>
+    <div class="card-body">
+        @foreach (var item in Model)
+        {
+            <form asp-action="UpRol" asp-controller="Rol" method="post">
+
+                <div class="mb-2">
+                    <label class="form-label">Id</label>
+                    <input type="number" class="form-control form-control-sm" asp-for="@item.rolId" readonly="readonly" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Rol</label>
+                    <input type="text" class="form-control form-control-sm" asp-for="@item.rolName" />
+                </div>
+
+                <button type="submit" class="btn btn-success btn-sm">Actualizar</button>
+
+                <a asp-action="RolList" asp-controller="Rol" class="btn btn-warning btn-sm">Volver a lista</a>
+            </form>
+        }
+    </div>
+
+</div>
