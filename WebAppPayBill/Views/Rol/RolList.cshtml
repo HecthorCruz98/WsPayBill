@@ -25,17 +25,27 @@
                         <td>@item.rolId</td>
                         <td>@item.rolName</td>
                         <td>
-                            <a asp-action="RolUp" asp-controller="Rol" class="btn btn-primary btn-sm" asp-route-Id="@item.rolId">Editar</a>
+                            <a asp-action="RolUp" asp-controller="Rol" class="btn btn-primary btn-sm" asp-route-rolId="@item.rolId">Editar</a>
                         </td>
                         <td>
                         </td>
                     </tr>
                 }
-                <a asp-action="RolList" asp-controller="Rol" class="btn btn-warning btn-sm">Actualizar</a>
+                <a asp-action="BillList" asp-controller="Bill" class="btn btn-warning btn-sm">Actualizar</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a asp-action="EditorialList" asp-controller="Home" class="btn btn-warning btn-sm">Pagos</a>
+                <a asp-action="TransactionList" asp-controller="Transaction" class="btn btn-warning btn-sm">Pagos</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a asp-action="LibroList" asp-controller="Home" class="btn btn-warning btn-sm">Usuarios</a>
+                <a asp-action="UserList" asp-controller="User" class="btn btn-warning btn-sm">Usuarios</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-action="DocumentList" asp-controller="Document" class="btn btn-warning btn-sm">Documentos</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-action="EnterpriseList" asp-controller="Enterprise" class="btn btn-warning btn-sm">Empresas</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-action="EnterpriseTypeList" asp-controller="EnterpriseType" class="btn btn-warning btn-sm">Tipo de Empresa</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-action="RolList" asp-controller="Rol" class="btn btn-warning btn-sm">Roles</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a asp-action="StateList" asp-controller="State" class="btn btn-warning btn-sm">Estados</a>
 
 
             </tbody>

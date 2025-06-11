@@ -23,7 +23,7 @@ namespace WebAppPayBill.Services.State
             cliente.BaseAddress = new Uri(_baseUrl);
             if (Id == 0)
             {
-                var response = await cliente.GetAsync("api/v1/State/GetStates");
+                var response = await cliente.GetAsync("api/v1/State/GetState");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -35,7 +35,7 @@ namespace WebAppPayBill.Services.State
             }
             else
             {
-                var response = await cliente.GetAsync("api/v1/State/GetStates?Id=" + Id);
+                var response = await cliente.GetAsync("api/v1/State/GetState?Id=" + Id);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -44,6 +44,31 @@ namespace WebAppPayBill.Services.State
                     var resultado = JsonConvert.DeserializeObject<List<StateModel>>(json_respuesta);
                     lista = resultado;
                 }
+            }
+
+            return lista;
+        }
+
+        public async Task<StateModel> GetState(int Id)
+        {
+            var lista = new StateModel();
+
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseUrl);
+
+            var response = await cliente.GetAsync("api/v1/State/GetState?staId=" + Id);
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                var json_respuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<StateModel>>(json_respuesta);
+                lista = new StateModel
+                {
+                    staId = resultado.FirstOrDefault().staId,
+                    staName = resultado.FirstOrDefault().staName
+                 
+                };
             }
 
             return lista;

@@ -4,7 +4,7 @@ using WebAppPayBill.Models;
 
 namespace WebAppPayBill.Services.EnterpriseType
 {
-    public class EnterpriseTypeService
+    public class EnterpriseTypeService : IEnterpriseTypeService
     {
         private static string _baseUrl;
         public EnterpriseTypeService()
@@ -44,6 +44,31 @@ namespace WebAppPayBill.Services.EnterpriseType
                     var resultado = JsonConvert.DeserializeObject<List<EnterpriseTypeModel>>(json_respuesta);
                     lista = resultado;
                 }
+            }
+
+            return lista;
+        }
+
+        public async Task<EnterpriseTypeModel> GetEnterpriseType(int Id)
+        {
+            var lista = new EnterpriseTypeModel();
+
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseUrl);
+
+            var response = await cliente.GetAsync("api/v1/EnterpriseType/GetEnterpriseTypes?etyId=" + Id);
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                var json_respuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<EnterpriseTypeModel>>(json_respuesta);
+                lista = new EnterpriseTypeModel
+                {
+                    etyId = resultado.FirstOrDefault().etyId,
+                    etyName = resultado.FirstOrDefault().etyName
+
+                };
             }
 
             return lista;

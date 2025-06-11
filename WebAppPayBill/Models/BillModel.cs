@@ -11,5 +11,8 @@
         public int State { get; set; }
         public string createUser { get; set; }
         public DateTime createDate { get; set; }
+        public string updateUser { get; set; }
+        public DateTime updateDate { get; set; }
+
     }
 }

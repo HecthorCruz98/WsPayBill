@@ -55,8 +55,8 @@ namespace WebAppPayBill.Controllers
             if (obj != null)
             {
                 //obj.State = 1;
-                obj.createDate = DateTime.Now;
-                obj.createUser = "Sistema";
+                obj.modifyDate = DateTime.Now;
+                obj.modifyUser = "Sistema";
                 respuesta = await _servicioApi.UpRol(obj);
             }
             else
@@ -79,7 +79,7 @@ namespace WebAppPayBill.Controllers
         }
         public async Task<IActionResult> RolUp(RolModel obj)
         {
-            List<RolModel> lista = await _servicioApi.GetRoles(obj.rolId);
+            RolModel lista = await _servicioApi.GetRol(obj.rolId);
             return View(lista);
 
         }

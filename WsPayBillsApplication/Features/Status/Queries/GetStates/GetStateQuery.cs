@@ -12,7 +12,7 @@ namespace WsPayBillsApplication.Features.Status.Queries.GetStates
     {
         public GetStateQuery(int? staId)
         {
-            staId = StaId;
+            StaId = staId;
         }
         public int? StaId { get; set; }
     }

@@ -23,7 +23,7 @@ namespace WebAppPayBill.Services.Rol
             cliente.BaseAddress = new Uri(_baseUrl);
             if (Id == 0)
             {
-                var response = await cliente.GetAsync("api/v1/Rol/GetRoles");
+                var response = await cliente.GetAsync("api/v1/Rol/GetRol");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -35,7 +35,7 @@ namespace WebAppPayBill.Services.Rol
             }
             else
             {
-                var response = await cliente.GetAsync("api/v1/Roles/GetRoles?Id=" + Id);
+                var response = await cliente.GetAsync("api/v1/Roles/GetRol?Id=" + Id);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -44,6 +44,32 @@ namespace WebAppPayBill.Services.Rol
                     var resultado = JsonConvert.DeserializeObject<List<RolModel>>(json_respuesta);
                     lista = resultado;
                 }
+            }
+
+            return lista;
+        }
+
+        public async Task<RolModel> GetRol(int Id)
+        {
+            var lista = new RolModel();
+
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseUrl);
+
+            var response = await cliente.GetAsync("api/v1/Rol/GetRol?rolId=" + Id);
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                var json_respuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<RolModel>>(json_respuesta);
+                lista = new RolModel
+                {
+                    rolId = resultado.FirstOrDefault().rolId,
+                    rolName = resultado.FirstOrDefault().rolName
+
+
+                };
             }
 
             return lista;
@@ -75,7 +101,7 @@ namespace WebAppPayBill.Services.Rol
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync("api/v1/Rol/UpdateRol", content);
+            var response = await cliente.PutAsync("api/v1/Rol/UpdateRol", content);
 
             if (response.IsSuccessStatusCode)
             {

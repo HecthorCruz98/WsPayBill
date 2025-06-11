@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WsPayBillsInfraestructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class PRUEBA : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -12,7 +12,7 @@ namespace WsPayBillsApplication.Features.Transactions.Queries.GetTransactions
     {
         public GetTransactionQuery(int? trnId)
         {
-            trnId = TrnId;
+            TrnId = trnId;
         }
         public int? TrnId { get; set; }
     }

@@ -79,7 +79,7 @@ namespace WebAppPayBill.Controllers
         }
         public async Task<IActionResult> StateUp(StateModel obj)
         {
-            List<StateModel> lista = await _servicioApi.GetStates(obj.staId);
+            StateModel lista = await _servicioApi.GetState(obj.staId);
             return View(lista);
 
         }

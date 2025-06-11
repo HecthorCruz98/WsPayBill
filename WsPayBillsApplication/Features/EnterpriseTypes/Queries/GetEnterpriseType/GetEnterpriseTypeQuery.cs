@@ -12,7 +12,7 @@ namespace WsPayBillsApplication.Features.EnterpriseTypes.Queries.GetEnterpriseTy
     {
         public GetEnterpriseTypeQuery(int? etyId)
         {
-            etyId = EtyId;
+            EtyId = etyId;
         }
         public int? EtyId { get; set; }
     }

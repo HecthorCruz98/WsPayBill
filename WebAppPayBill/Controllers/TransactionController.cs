@@ -55,8 +55,8 @@ namespace WebAppPayBill.Controllers
             if (obj != null)
             {
                 //obj.State = 1;
-                obj.createDate = DateTime.Now;
-                obj.createUser = "Sistema";
+                obj.modifyDate = DateTime.Now;
+                obj.modifyUser = "Sistema";
                 respuesta = await _servicioApi.UpTransaction(obj);
             }
             else
@@ -77,9 +77,9 @@ namespace WebAppPayBill.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> TransactionUp(TransactionModel obj)
+        public async Task<IActionResult> TransactionUp(int trnId)
         {
-            List<TransactionModel> lista = await _servicioApi.GetTransactions(obj.trnId);
+            TransactionModel lista = await _servicioApi.GetTransaction(trnId);
             return View(lista);
 
         }

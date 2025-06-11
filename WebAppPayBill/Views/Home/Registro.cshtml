@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+
+<div>
+    <header class="header1">
+    </header>
+    <br>
+    <div style="display: flex; justify-content: center; align-items: center;">
+    
+        <main class="form-signin w-100 m-auto" style="max-width: 350px; margin-left: auto; text-align:center;">
+            <form>
+
+                <h2 class="h3 mb-3 fw-normal">Datos del Nuevo Usuario</h2>
+
+                <div class="form-floating">
+                    <input type="nombres" class="form-control" id="floatingInput" placeholder="Nombres">
+                    <label for="floatingInput">Nombres</label>
+                </div>
+                <br />
+                <div class="form-floating">
+                    <input type="apellidos" class="form-control" id="floatingPassword" placeholder="Apellidos">
+                    <label for="floatingPassword">Apellidos</label>
+                </div>
+                <br />
+                <div class="form-floating">
+                    <input type="cellphone" class="form-control" id="floatingPassword" placeholder="cellphone">
+                    <label for="floatingPassword">Telefono</label>
+                </div>
+                <br />
+                <div class="form-floating">
+                    <input type="typedoc" class="form-control" id="floatingPassword" placeholder="typedoc">
+                    <label for="floatingPassword">Tipo de Documento</label>
+                </div>
+                <br />
+                <div class="form-floating">
+                    <input type="doc" class="form-control" id="floatingPassword" placeholder="doc">
+                    <label for="floatingPassword">Número de Documento</label>
+                </div>
+                <br />
+                <div class="form-floating">
+                    <input type="date" class="form-control" id="floatingPassword" placeholder="date">
+                    <label for="floatingPassword">Fecha de Expedición</label>
+                </div>
+                <br />
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingPassword" placeholder="E-mail">
+                    <label for="floatingPassword">Correo</label>
+                </div>
+                <br />
+                <div class="form-floating">
+                    <input type="rol" class="form-control" id="floatingPassword" placeholder="rol">
+                    <label for="floatingPassword">Rol</label>
+                </div>
+            
+                <button class="btn btn-primary w-100 py-2" type="submit" style="background-color:#4d8936">Registrarse</button>
+                
+                <br>
+
+            </form>
+        </main>
+    </div>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="text-center">
+
+
+        <a asp-action="Registro" asp-controller="Home" class="btn btn-warning btn-sm">Registro</a>
+     
+
+
+    </div>
+</div>
