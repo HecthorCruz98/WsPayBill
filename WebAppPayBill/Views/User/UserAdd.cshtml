@@ -1,0 +1,64 @@
+﻿@model UserModel
+@{
+    ViewData["Title"] = " Usuarios";
+}
+<div class="card">
+    <div class="card-header">
+        Crear estado en el sistema
+    </div>
+    <div class="card-body">
+
+        <form asp-action="AddUser" asp-controller="User" method="post">
+
+            <div class="mb-2">
+                <label class="form-label">Id</label>
+                <input type="number" class="form-control form-control-sm" asp-for="usrId" readonly="readonly" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Nombres</label>
+                <input type="text" class="form-control form-control-sm" asp-for="usrName" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Apellidos</label>
+                <input type="text" class="form-control form-control-sm" asp-for="usrLastName" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Direccion</label>
+                <input type="text" class="form-control form-control-sm" asp-for="usrAddres" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Correo</label>
+                <input type="text" class="form-control form-control-sm" asp-for="usrEmail" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Celular</label>
+                <input type="text" class="form-control form-control-sm" asp-for="usrCelPhone" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Rol</label>
+                <input type="text" class="form-control form-control-sm" asp-for="rolId" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Fecha de Creacion</label>
+                <input type="text" class="form-control form-control-sm" asp-for="createDate" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Usuario Creador</label>
+                <input type="text" class="form-control form-control-sm" asp-for="createUser" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Fecha de Modificacion</label>
+                <input type="text" class="form-control form-control-sm" asp-for="modifyDate" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Usuario Modificador</label>
+                <input type="text" class="form-control form-control-sm" asp-for="modifyUser" />
+            </div>
+            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+
+            <a asp-action="UserList" asp-controller="User" class="btn btn-warning btn-sm">Volver a lista</a>
+        </form>
+
+    </div>
+
+</div>

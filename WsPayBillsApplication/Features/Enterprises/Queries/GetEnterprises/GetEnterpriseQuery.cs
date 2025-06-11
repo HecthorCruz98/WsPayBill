@@ -12,7 +12,7 @@ namespace WsPayBillsApplication.Features.Enterprises.Queries.GetEnterprises
     {
         public GetEnterpriseQuery(int? entId)
         {
-            entId = EntId;
+            EntId = entId;
         }
         public int? EntId { get; set; }
     }

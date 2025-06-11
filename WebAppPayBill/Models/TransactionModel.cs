@@ -2,6 +2,7 @@
 {
     public class TransactionModel
     {
+
         public int trnId { get; set; }
         public int usrId { get; set; }
         public int bilId { get; set; }

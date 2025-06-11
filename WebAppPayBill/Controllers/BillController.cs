@@ -56,8 +56,8 @@ namespace WebAppPayBill.Controllers
             if (obj != null)
             {
                 obj.State = 1;
-                obj.createDate = DateTime.Now;
-                obj.createUser = "Sistema";
+                obj.updateDate = DateTime.Now;
+                obj.updateUser = "Sistema";
                 respuesta = await _servicioApi.UpBill(obj);
             }
             else
@@ -78,9 +78,9 @@ namespace WebAppPayBill.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> BillUp(BillModel obj)
+        public async Task<IActionResult> BillUp(int bilNumber)
         {
-            List<BillModel> lista = await _servicioApi.GetBills(obj.bilId);
+            BillModel lista = await _servicioApi.GetBill(bilNumber);
             return View(lista);
 
         }

@@ -48,6 +48,33 @@ namespace WebAppPayBill.Services.Transaction
 
             return lista;
         }
+        public async Task<TransactionModel> GetTransaction(int Id)
+        {
+            var lista = new TransactionModel();
+
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseUrl);
+
+            var response = await cliente.GetAsync("api/v1/Transaction/GetTransactions?trnId=" + Id);
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                var json_respuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<TransactionModel>>(json_respuesta);
+                lista = new TransactionModel
+                {
+                    trnId = resultado.FirstOrDefault().trnId,
+                    usrId = resultado.FirstOrDefault().usrId,
+                    bilId = resultado.FirstOrDefault().bilId,
+                    createDate = resultado.FirstOrDefault().createDate,
+                    createUser = resultado.FirstOrDefault().createUser
+
+                };
+            }
+            return lista;
+        }
+    
         public async Task<bool> AddTransaction(TransactionModel obj)
         {
             bool respuesta = false;
@@ -75,7 +102,7 @@ namespace WebAppPayBill.Services.Transaction
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync("api/v1/Transaction/UpdateTransaction", content);
+            var response = await cliente.PutAsync("api/v1/Transaction/UpdateTransaction", content);
 
             if (response.IsSuccessStatusCode)
             {

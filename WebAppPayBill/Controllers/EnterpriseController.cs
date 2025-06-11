@@ -30,7 +30,7 @@ namespace WebAppPayBill.Controllers
 
             if (obj != null)
             {
-                //obj.State = 1;
+                obj.State = 1;
                 obj.createDate = DateTime.Now;
                 obj.createUser = "Sistema";
                 respuesta = await _servicioApi.AddEnterprise(obj);
@@ -56,8 +56,8 @@ namespace WebAppPayBill.Controllers
             if (obj != null)
             {
                 //obj.State = 1;
-                obj.createDate = DateTime.Now;
-                obj.createUser = "Sistema";
+                obj.modifyDate = DateTime.Now;
+                obj.modifyUser = "Sistema";
                 respuesta = await _servicioApi.UpEnterprise(obj);
             }
             else
@@ -80,7 +80,7 @@ namespace WebAppPayBill.Controllers
         }
         public async Task<IActionResult> EnterpriseUp(EnterpriseModel obj)
         {
-            List<EnterpriseModel> lista = await _servicioApi.GetEnterprises(obj.entId);
+            EnterpriseModel lista = await _servicioApi.GetEnterprise(obj.entId);
             return View(lista);
 
         }

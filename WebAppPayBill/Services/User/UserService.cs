@@ -2,12 +2,13 @@
 using System.Text;
 using WebAppPayBill.Models;
 
-namespace WebAppPayBill.Services.DocumentServices
+
+namespace WebAppPayBill.Services.User
 {
-    public class DocumentService : IDocumentService
+    public class UserService : IUserService
     {
         private static string _baseUrl;
-        public DocumentService()
+        public UserService()
         {
 
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
@@ -15,68 +16,73 @@ namespace WebAppPayBill.Services.DocumentServices
             _baseUrl = builder.GetSection("ApiSetting:baseUrl").Value;
         }
 
-        public async Task<List<DocumentModel>> GetDocuments(int? Id)
+        public async Task<List<UserModel>> GetUsers(int? Id)
         {
-            List<DocumentModel> lista = new List<DocumentModel>();
+            List<UserModel> lista = new List<UserModel>();
 
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseUrl);
             if (Id == 0)
             {
-                var response = await cliente.GetAsync("api/v1/Document/GetDocuments");
+                var response = await cliente.GetAsync("api/v1/User/GetUsers");
 
                 if (response.IsSuccessStatusCode)
                 {
 
                     var json_respuesta = await response.Content.ReadAsStringAsync();
-                    var resultado = JsonConvert.DeserializeObject<List<DocumentModel>>(json_respuesta);
+                    var resultado = JsonConvert.DeserializeObject<List<UserModel>>(json_respuesta);
                     lista = resultado;
                 }
             }
             else
             {
-                var response = await cliente.GetAsync("api/v1/Document/GetDocuments?Id=" + Id);
+                var response = await cliente.GetAsync("api/v1/User/GetUsers?Id=" + Id);
 
                 if (response.IsSuccessStatusCode)
                 {
 
                     var json_respuesta = await response.Content.ReadAsStringAsync();
-                    var resultado = JsonConvert.DeserializeObject<List<DocumentModel>>(json_respuesta);
+                    var resultado = JsonConvert.DeserializeObject<List<UserModel>>(json_respuesta);
                     lista = resultado;
                 }
             }
 
             return lista;
         }
-
-        public async Task<DocumentModel> GetDocument(int Id)
+        public async Task<UserModel> GetUser(int Id)
         {
-            var lista = new DocumentModel();
+            var lista = new UserModel();
 
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseUrl);
 
-            var response = await cliente.GetAsync("api/v1/Document/GetDocuments?DocumentNumber=" + Id);
+            var response = await cliente.GetAsync("api/v1/User/GetUsers?usrId=" + Id);
 
             if (response.IsSuccessStatusCode)
             {
 
                 var json_respuesta = await response.Content.ReadAsStringAsync();
-                var resultado = JsonConvert.DeserializeObject<List<DocumentModel>>(json_respuesta);
-                lista = new DocumentModel
+                var resultado = JsonConvert.DeserializeObject<List<UserModel>>(json_respuesta);
+                lista = new UserModel
                 {
-                    docId = resultado.FirstOrDefault().docId,
-                    bilId = resultado.FirstOrDefault().bilId,
-                    docUrl= resultado.FirstOrDefault().docUrl,
-                    usrId = resultado.FirstOrDefault().usrId
-
-                
+                    usrId = resultado.FirstOrDefault().usrId,
+                    usrName = resultado.FirstOrDefault().usrName,
+                    usrLastName = resultado.FirstOrDefault().usrLastName,
+                    usrAddres = resultado.FirstOrDefault().usrAddres,
+                    usrEmail = resultado.FirstOrDefault().usrEmail,
+                    usrCelPhone = resultado.FirstOrDefault().usrCelPhone,
+                    rolId = resultado.FirstOrDefault().rolId,
+                    createDate = resultado.FirstOrDefault().createDate,
+                    createUser = resultado.FirstOrDefault().createUser,
+                    modifyDate = resultado.FirstOrDefault().modifyDate,
+                    modifyUser = resultado.FirstOrDefault().modifyUser
+             
                 };
             }
 
             return lista;
         }
-        public async Task<bool> AddDocument(DocumentModel obj)
+        public async Task<bool> AddUser(UserModel obj)
         {
             bool respuesta = false;
 
@@ -85,7 +91,7 @@ namespace WebAppPayBill.Services.DocumentServices
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync("api/v1/Document/CreateDocument", content);
+            var response = await cliente.PostAsync("api/v1/User/CreateUser", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -94,7 +100,7 @@ namespace WebAppPayBill.Services.DocumentServices
 
             return respuesta;
         }
-        public async Task<bool> UpDocument(DocumentModel obj)
+        public async Task<bool> UpUser(UserModel obj)
         {
             bool respuesta = false;
 
@@ -103,7 +109,7 @@ namespace WebAppPayBill.Services.DocumentServices
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PutAsync("api/v1/Document/UpdateDocument", content);
+            var response = await cliente.PutAsync("api/v1/User/UpdateUser", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -112,5 +118,7 @@ namespace WebAppPayBill.Services.DocumentServices
 
             return respuesta;
         }
+
+
     }
 }

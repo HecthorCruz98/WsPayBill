@@ -1,24 +1,29 @@
-﻿@model List<BillModel>
+﻿@model List<UserModel>
 @{
-    ViewData["Title"] = "Facturas";
+    ViewData["Title"] = " Usuarios";
 }
 <div class="card">
     <div class="card-header">
-        Facturas
+        Usuarios
     </div>
     <div class="card-body">
 
-        <a asp-action="BillAdd" asp-controller="Bill" class="btn btn-success btn-sm">Crear Nueva Factura</a>
+        <a asp-action="UserAdd" asp-controller="User" class="btn btn-success btn-sm">Agregar Nuevo Usuario</a>
         <hr />
         <table class="table">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Numero de Factura</th>
-                    <th>Numero de Contrato</th>
-                    <th>Descripcion</th>
-                    <th>Valor Factura</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Direccion</th>
+                    <th>Correo</th>
+                    <th>Celular</th>
+                    <th>Rol</th>
+                    <th>Fecha de Creacion</th>
+                    <th>Usuario Creador</th>
+                    <th>Fecha de Modificacion</th>
+                    <th>Usuario Modificador</th>
 
                 </tr>
             </thead>
@@ -26,14 +31,19 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.bilId</td>
-                        <td>@item.bilName</td>
-                        <td>@item.bilNumber</td>
-                        <td>@item.bilContract</td>
-                        <td>@item.bilDescription</td>
-                        <td>@item.bilValuePay</td> 
+                        <td>@item.usrId</td>
+                        <td>@item.usrName</td>
+                        <td>@item.usrLastName</td>
+                        <td>@item.usrAddres</td>
+                        <td>@item.usrEmail</td>
+                        <td>@item.usrCelPhone</td>
+                        <td>@item.rolId</td>
+                        <td>@item.createDate</td>
+                        <td>@item.createUser</td>
+                        <td>@item.modifyDate</td>
+                        <td>@item.modifyUser</td>
                         <td>
-                            <a asp-action="BillUp" asp-controller="Bill" class="btn btn-primary btn-sm" asp-route-bilNumber="@item.bilNumber">Editar</a>
+                            <a asp-action="UserUp" asp-controller="User" class="btn btn-primary btn-sm" asp-route-usrId="@item.usrId">Editar</a>
                         </td>
                         <td>
                         </td>
@@ -54,8 +64,6 @@
                 <a asp-action="RolList" asp-controller="Rol" class="btn btn-warning btn-sm">Roles</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a asp-action="StateList" asp-controller="State" class="btn btn-warning btn-sm">Estados</a>
-                
-
 
 
             </tbody>

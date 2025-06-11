@@ -48,6 +48,33 @@ namespace WebAppPayBill.Services.Enterprise
 
             return lista;
         }
+
+          public async Task<EnterpriseModel> GetEnterprise(int Id)
+        {
+            var lista = new EnterpriseModel();
+
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseUrl);
+
+            var response = await cliente.GetAsync("api/v1/Enterprise/GetEnterprises?entId=" + Id);
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                var json_respuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<EnterpriseModel>>(json_respuesta);
+                lista = new EnterpriseModel
+                {
+                    entId = resultado.FirstOrDefault().entId,
+                    entName = resultado.FirstOrDefault().entName,
+                    etyId = resultado.FirstOrDefault().etyId
+
+
+                };
+ 
+            }
+            return lista;
+        }
         public async Task<bool> AddEnterprise(EnterpriseModel obj)
         {
             bool respuesta = false;
@@ -75,7 +102,7 @@ namespace WebAppPayBill.Services.Enterprise
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync("api/v1/Enterprise/UpdateEnterprise", content);
+            var response = await cliente.PutAsync("api/v1/Enterprise/UpdateEnterprise", content);
 
             if (response.IsSuccessStatusCode)
             {

@@ -12,7 +12,7 @@ namespace WsPayBillsApplication.Features.Users.Queries.GetUsers
     {
         public GetUserQuery(int? usrId)
         {
-            usrId = UsrId;
+            UsrId = usrId;
         }
         public int? UsrId { get; set; }
     }

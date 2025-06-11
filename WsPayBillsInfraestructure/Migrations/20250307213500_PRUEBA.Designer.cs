@@ -12,8 +12,8 @@ using WsPayBillsInfraestructure.Persistence;
 namespace WsPayBillsInfraestructure.Migrations
 {
     [DbContext(typeof(WsPayBillContext))]
-    [Migration("20230615185206_initial")]
-    partial class initial
+    [Migration("20250307213500_PRUEBA")]
+    partial class PRUEBA
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

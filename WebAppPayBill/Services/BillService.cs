@@ -48,6 +48,34 @@ namespace WebAppPayBill.Services
 
             return lista;
         }
+            public async Task<BillModel> GetBill(int Id)
+        {
+            var lista = new BillModel();
+
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseUrl);
+
+                var response = await cliente.GetAsync("api/v1/Bill/GetBills?BillNumber=" + Id);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    var json_respuesta = await response.Content.ReadAsStringAsync();
+                    var resultado = JsonConvert.DeserializeObject<List<BillModel>>(json_respuesta);
+                    lista = new BillModel
+                    {
+                        bilId = resultado.FirstOrDefault().bilId,
+                        bilContract = resultado.FirstOrDefault().bilContract,
+                        bilNumber = resultado.FirstOrDefault().bilNumber,
+                        bilDescription = resultado.FirstOrDefault().bilName,
+                        bilName = resultado.FirstOrDefault().bilName,
+                        bilValuePay = resultado.FirstOrDefault().bilValuePay
+
+                    };
+                }
+
+            return lista;
+        }
         public async Task<bool> AddBill(BillModel obj)
         {
             bool respuesta = false;
@@ -75,7 +103,7 @@ namespace WebAppPayBill.Services
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync("api/v1/Bill/UpdateBill", content);
+            var response = await cliente.PutAsync("api/v1/Bill/UpdateBill", content);
 
             if (response.IsSuccessStatusCode)
             {

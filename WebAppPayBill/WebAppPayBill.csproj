@@ -14,4 +14,8 @@
     <Folder Include="Services\Bill\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\images\LogoPayBill.png" />
+  </ItemGroup>
+
 </Project>

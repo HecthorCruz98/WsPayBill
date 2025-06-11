@@ -41,10 +41,10 @@ namespace WebAppPayBill.Controllers
 
 
             if (respuesta)
-                return RedirectToAction("BillList");
+                return RedirectToAction("DocumentList");
             else
                 //return NoContent();
-                return RedirectToAction("BillAdd");
+                return RedirectToAction("DocumentAdd");
 
         }
         public async Task<IActionResult> UpDocument(DocumentModel obj)
@@ -55,8 +55,8 @@ namespace WebAppPayBill.Controllers
             if (obj != null)
             {
                 //obj.State = 1;
-                obj.createDate = DateTime.Now;
-                obj.createUser = "Sistema";
+                obj.modifyDate = DateTime.Now;
+                obj.modifyUser = "Sistema";
                 respuesta = await _servicioApi.UpDocument(obj);
             }
             else
@@ -79,7 +79,7 @@ namespace WebAppPayBill.Controllers
         }
         public async Task<IActionResult> DocumentUp(DocumentModel obj)
         {
-            List<DocumentModel> lista = await _servicioApi.GetDocuments(obj.bilId);
+            DocumentModel lista = await _servicioApi.GetDocument(obj.docId);
             return View(lista);
 
         }

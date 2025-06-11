@@ -79,7 +79,7 @@ namespace WebAppPayBill.Controllers
         }
         public async Task<IActionResult> EnterpriseTypeUp(EnterpriseTypeModel obj)
         {
-            List<EnterpriseTypeModel> lista = await _servicioApi.GetEnterpriseTypes(obj.etyId);
+            EnterpriseTypeModel lista = await _servicioApi.GetEnterpriseType(obj.etyId);
             return View(lista);
 
         }

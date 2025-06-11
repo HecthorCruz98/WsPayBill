@@ -12,7 +12,7 @@ namespace WsPayBillsApplication.Features.Roles.Queries.GetRol
     {
         public GetRolQuery(int? rolId)
         {
-            rolId = RolId;
+            RolId = rolId;
         }
         public int? RolId { get; set; }
     }
